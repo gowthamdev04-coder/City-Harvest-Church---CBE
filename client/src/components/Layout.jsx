@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
-import { Menu, X, ArrowUpRight } from 'lucide-react'
-
-const links = [
-  ['About', '/about'],
-  ['Ministries', '/ministries'],
-  ['Events', '/events'],
-  ['Sermons', '/sermons']
-]
+import { Menu, X, ArrowUpRight, Radio, HeartHandshake, PlayCircle, Globe } from 'lucide-react'
+import { useLanguage } from '../context/LanguageContext'
 
 export default function Layout() {
   const [open, setOpen] = useState(false)
+  const [showQuickWidget, setShowQuickWidget] = useState(true)
+  const { lang, setLang, t } = useLanguage()
+
+  const links = [
+    [t('navAbout'), '/about'],
+    [t('navMinistries'), '/ministries'],
+    [t('navEvents'), '/events'],
+    [t('navSermons'), '/sermons']
+  ]
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -22,6 +25,47 @@ export default function Layout() {
 
   return (
     <>
+      {/* Top Live Broadcast & Announcement Ticker Bar */}
+      <div className="top-announcement-bar">
+        <div className="shell announcement-content">
+          <span className="ticker-live-badge">
+            <Radio size={13} className="pulse-icon" /> {t('tickerLive')}
+          </span>
+          <span className="ticker-text">
+            {t('tickerText')}
+          </span>
+          
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <a 
+              href="https://www.youtube.com/@CityHarvest.online" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="ticker-link"
+            >
+              {t('watchOnline')} <PlayCircle size={13} />
+            </a>
+
+            {/* Language Switcher in Ticker */}
+            <div className="lang-switcher-ticker">
+              <Globe size={13} />
+              <button 
+                className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
+                onClick={() => setLang('en')}
+              >
+                EN
+              </button>
+              <span>|</span>
+              <button 
+                className={`lang-btn ${lang === 'ta' ? 'active' : ''}`}
+                onClick={() => setLang('ta')}
+              >
+                தமிழ்
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <header className="site-header">
         <div className="shell nav-wrap">
           <Link className="brand" to="/" onClick={() => setOpen(false)}>
@@ -46,10 +90,28 @@ export default function Layout() {
               </NavLink>
             ))}
             <NavLink to="/contact" onClick={() => setOpen(false)}>
-              I'm New
+              {t('navContact')}
             </NavLink>
+
+            {/* Mobile / Nav Language Switcher */}
+            <div className="lang-switcher-nav">
+              <Globe size={14} />
+              <button 
+                className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
+                onClick={() => setLang('en')}
+              >
+                EN
+              </button>
+              <button 
+                className={`lang-btn ${lang === 'ta' ? 'active' : ''}`}
+                onClick={() => setLang('ta')}
+              >
+                தமிழ்
+              </button>
+            </div>
+
             <Link className="nav-give" to="/give" onClick={() => setOpen(false)}>
-              Give <ArrowUpRight size={15} />
+              {t('navGive')} <ArrowUpRight size={15} />
             </Link>
           </nav>
         </div>
@@ -58,6 +120,21 @@ export default function Layout() {
       <main>
         <Outlet />
       </main>
+
+      {/* Floating Quick Action Bar */}
+      {showQuickWidget && (
+        <div className="floating-quick-bar">
+          <Link to="/contact" className="quick-action-btn primary-action">
+            <HeartHandshake size={16} /> {t('requestPrayer')}
+          </Link>
+          <a href="https://www.youtube.com/@CityHarvest.online" target="_blank" rel="noreferrer" className="quick-action-btn secondary-action">
+            <Radio size={16} /> {t('watchLive')}
+          </a>
+          <button onClick={() => setShowQuickWidget(false)} className="quick-close-btn" aria-label="Close widget">
+            <X size={14} />
+          </button>
+        </div>
+      )}
 
       <footer className="site-footer">
         <div className="shell footer-grid">
@@ -72,19 +149,18 @@ export default function Layout() {
               </div>
             </Link>
             <p style={{ marginTop: '16px' }}>
-              A house of hope for our city.<br />
-              Come as you are.
+              {t('footerTagline')}
             </p>
           </div>
           <div>
-            <h4>Join us Sunday</h4>
+            <h4>{t('joinUsSundayFooter')}</h4>
             <p>
               8:30 AM & 10:30 AM<br />
               Coimbatore, Tamil Nadu
             </p>
           </div>
           <div>
-            <h4>Stay connected</h4>
+            <h4>{t('stayConnected')}</h4>
             <p className="footer-social-links">
               <a href="https://www.youtube.com/@CityHarvest.online" target="_blank" rel="noreferrer">YouTube</a> &nbsp;•&nbsp;
               <a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a><br />
@@ -94,7 +170,7 @@ export default function Layout() {
           </div>
         </div>
         <div className="shell footer-bottom">
-          © {new Date().getFullYear()} City Harvest Church. <span>Made to help people find their way home.</span>
+          {t('copyright')}
         </div>
       </footer>
     </>

@@ -28,63 +28,68 @@ import {
   coreBeliefs, 
   connectGroupsList, 
   impactMetrics, 
-  givingFaqs 
+  givingFaqs,
+  churchWithoutWallsProjects,
+  discipleshipClasses
 } from '../data/content'
 import { featuredSermon, recentVideos } from '../data/sermons'
-
-const details = {
-  about: {
-    eyebrow: 'OUR STORY',
-    title: 'A church for the city.',
-    body: 'City Harvest Church is a Christ-centred community in Coimbatore committed to seeing people encounter Jesus and live out His love in every part of life.',
-    image: 'about'
-  },
-  ministries: {
-    eyebrow: 'FIND COMMUNITY',
-    title: 'There is a place for you.',
-    body: 'Every generation and every story matters. Find a community where you can grow in faith, serve others, and truly belong.',
-    image: 'ministries'
-  },
-  events: {
-    eyebrow: 'SAVE THE DATE',
-    title: 'Life is better together.',
-    body: 'From Sunday worship celebrations to midweek prayer and local outreach, there is always a way to connect with our community.',
-    image: 'events'
-  },
-  sermons: {
-    eyebrow: 'WATCH & LISTEN',
-    title: 'Truth for every day.',
-    body: 'Watch recent messages, revival nights, and Tamil worship sessions to be encouraged wherever you are.',
-    image: 'sermons'
-  },
-  give: {
-    eyebrow: 'GENEROSITY',
-    title: 'Make a difference.',
-    body: 'Your generosity helps us care for people, support families, and bring practical hope and God’s love to our city.',
-    image: 'give'
-  },
-  contact: {
-    eyebrow: 'COME AS YOU ARE',
-    title: 'We can’t wait to meet you.',
-    body: 'Planning your first visit? Let us know you’re coming and our welcome team will make your Sunday simple and welcoming.',
-    image: 'contact'
-  }
-}
+import { useLanguage } from '../context/LanguageContext'
 
 export default function ContentPage({ type }) {
-  const page = details[type] || details.about
+  const { t } = useLanguage()
 
   useEffect(() => {
     const titles = {
-      about: 'About Us | City Harvest Church Coimbatore',
-      ministries: 'Ministries & Connect Groups | City Harvest Church Coimbatore',
-      events: 'Events & Gatherings | City Harvest Church Coimbatore',
-      sermons: 'Sermons & Media | City Harvest Church Coimbatore',
-      give: 'Give & Generosity | City Harvest Church Coimbatore',
-      contact: 'Contact & Plan Your Visit | City Harvest Church Coimbatore'
+      about: `${t('navAbout')} | City Harvest Church`,
+      ministries: `${t('navMinistries')} | City Harvest Church`,
+      events: `${t('navEvents')} | City Harvest Church`,
+      sermons: `${t('navSermons')} | City Harvest Church`,
+      give: `${t('navGive')} | City Harvest Church`,
+      contact: `${t('navContact')} | City Harvest Church`
     }
     document.title = titles[type] || 'City Harvest Church'
-  }, [type])
+  }, [type, t])
+
+  const details = {
+    about: {
+      eyebrow: t('ourStoryEyebrow'),
+      title: t('aboutTitle'),
+      body: t('aboutLead'),
+      image: 'about'
+    },
+    ministries: {
+      eyebrow: t('findCommunityEyebrow'),
+      title: t('ministriesTitle'),
+      body: t('ministriesLead'),
+      image: 'ministries'
+    },
+    events: {
+      eyebrow: t('saveDateEyebrow'),
+      title: t('eventsTitle'),
+      body: t('eventsLead'),
+      image: 'events'
+    },
+    sermons: {
+      eyebrow: t('watchListenEyebrow'),
+      title: t('sermonsTitle'),
+      body: t('sermonsLead'),
+      image: 'sermons'
+    },
+    give: {
+      eyebrow: t('generosityEyebrow'),
+      title: t('giveTitle'),
+      body: t('giveLead'),
+      image: 'give'
+    },
+    contact: {
+      eyebrow: t('getInTouchEyebrow'),
+      title: t('contactTitle'),
+      body: t('contactLead'),
+      image: 'contact'
+    }
+  }
+
+  const page = details[type] || details.about
 
   return (
     <>
@@ -102,6 +107,7 @@ export default function ContentPage({ type }) {
 }
 
 function RenderPageSections({ type }) {
+  const { t } = useLanguage()
   const [copied, setCopied] = useState(false)
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [prayerSubmitted, setPrayerSubmitted] = useState(false)
@@ -109,6 +115,7 @@ function RenderPageSections({ type }) {
   const [selectedTopic, setSelectedTopic] = useState('All')
   const [giveAmount, setGiveAmount] = useState('1000')
   const [selectedFund, setSelectedFund] = useState('General Tithe')
+  const [selectedGroupArea, setSelectedGroupArea] = useState('All')
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text)
@@ -124,12 +131,12 @@ function RenderPageSections({ type }) {
         <section className="section shell">
           <div className="split-content">
             <div>
-              <p className="eyebrow">OUR HEART</p>
+              <p className="eyebrow">{t('ourStoryEyebrow')}</p>
               <h2 style={{ font: 'clamp(36px, 4vw, 52px)/1.05 "DM Serif Display"', margin: '12px 0 20px' }}>
-                Building a house of hope for Coimbatore.
+                {t('aboutTitle')}
               </h2>
               <p className="lead">
-                To be a welcoming, Christ-centred church where people encounter Jesus, grow in faith, and bring hope to Coimbatore and beyond.
+                {t('aboutLead')}
               </p>
               <p style={{ lineHeight: 1.7, color: 'var(--muted)' }}>
                 We gather every Sunday to worship, learn from Scripture, and care for one another as a spiritual family. Through the week, we scatter across homes, workplaces, and campuses to live out that love in our local neighborhoods.
@@ -149,11 +156,11 @@ function RenderPageSections({ type }) {
           <div className="shell">
             <div className="section-heading">
               <div>
-                <p className="eyebrow">MEET OUR TEAM</p>
-                <h2>Pastoral & Ministry Leadership</h2>
+                <p className="eyebrow">{t('meetTeam')}</p>
+                <h2>{t('pastoralLeadership')}</h2>
               </div>
               <p className="section-aside">
-                Dedicated leaders serving our church family and guiding our ministries in Coimbatore.
+                {t('leadershipDesc')}
               </p>
             </div>
             <div className="team-grid">
@@ -175,8 +182,8 @@ function RenderPageSections({ type }) {
         <section className="section shell">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">WHAT WE BELIEVE</p>
-              <h2>Foundations of Our Faith</h2>
+              <p className="eyebrow">{t('whatWeBelieve')}</p>
+              <h2>{t('foundationsFaith')}</h2>
             </div>
           </div>
           <div className="beliefs-grid">
@@ -244,6 +251,62 @@ function RenderPageSections({ type }) {
           </div>
         </section>
 
+        {/* Church Without Walls Community Outreach Section (Inspired by CHC) */}
+        <section className="cww-section section shell">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">CHURCH WITHOUT WALLS</p>
+              <h2>Loving Coimbatore Beyond the Sanctuary</h2>
+            </div>
+            <p className="section-aside">
+              Bringing hope, practical care, and God's love to the needy and vulnerable in our city.
+            </p>
+          </div>
+
+          <div className="cww-projects-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+            {churchWithoutWallsProjects.map((project) => (
+              <article key={project.title} className="cww-card" style={{ background: '#ffffff', borderRadius: '12px', overflow: 'hidden', border: '1px solid #e5dccf', boxShadow: '0 8px 24px rgba(24, 48, 43, 0.06)' }}>
+                <div className="cww-image" style={{ height: '190px', backgroundImage: `url(${project.image})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
+                  <span className="tag" style={{ position: 'absolute', top: '12px', left: '12px', background: '#18302b', color: '#e9bc5f', padding: '4px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: 700 }}>
+                    {project.category}
+                  </span>
+                </div>
+                <div style={{ padding: '24px' }}>
+                  <h3 style={{ font: '24px "DM Serif Display"', margin: '0 0 10px' }}>{project.title}</h3>
+                  <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.6, margin: '0 0 16px' }}>{project.description}</p>
+                  <Link className="text-link" to="/contact">
+                    Get involved <ArrowRight size={15} />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* School of Theology & Bible Study Classes */}
+        <section className="section shell">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">EQUIPPING DISCIPLES</p>
+              <h2>School of Theology & Bible Study Classes</h2>
+            </div>
+            <p className="section-aside">
+              Systematic biblical instruction, theology foundations, and leader equipping courses.
+            </p>
+          </div>
+
+          <div className="discipleship-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+            {discipleshipClasses.map((item) => (
+              <div key={item.code} style={{ background: '#f8f5ef', padding: '28px', borderRadius: '12px', border: '1px solid #e5dccf' }}>
+                <span style={{ fontSize: '12px', fontWeight: 700, color: '#a87119', letterSpacing: '1px', display: 'block', marginBottom: '6px' }}>{item.code} · {item.duration}</span>
+                <h3 style={{ font: '24px "DM Serif Display"', margin: '0 0 10px', color: 'var(--ink)' }}>{item.title}</h3>
+                <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.6, margin: '0 0 16px' }}>{item.description}</p>
+                <span className="tag" style={{ background: '#ffffff', border: '1px solid #d1c9bb', padding: '4px 10px', borderRadius: '4px' }}>Format: {item.format}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Coimbatore Connect Groups Section */}
         <section className="soft-section section">
           <div className="shell">
@@ -256,8 +319,26 @@ function RenderPageSections({ type }) {
                 Connect groups meet in homes across Coimbatore to study Scripture, pray together, and build life-giving friendships.
               </p>
             </div>
+
+            {/* Neighborhood Filter Pills */}
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '24px', flexWrap: 'wrap' }}>
+              {['All', 'RS Puram', 'Peelamedu', 'Saravanampatti', 'Gandhipuram'].map((area) => (
+                <button
+                  key={area}
+                  className={`button ${selectedGroupArea === area ? 'dark' : 'outline'}`}
+                  onClick={() => setSelectedGroupArea(area)}
+                  style={{ padding: '6px 14px', fontSize: '13px' }}
+                >
+                  {area}
+                </button>
+              ))}
+            </div>
+
             <div className="connect-groups-grid">
-              {connectGroupsList.map((cg) => (
+              {(selectedGroupArea === 'All' 
+                ? connectGroupsList 
+                : connectGroupsList.filter(cg => cg.area === selectedGroupArea)
+              ).map((cg) => (
                 <article key={cg.area} className="group-location-card">
                   <div className="group-header">
                     <MapPin size={20} color="#a87119" />
