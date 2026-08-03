@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import { LanguageProvider } from './context/LanguageContext'
 import Layout from './components/Layout'
 import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
@@ -8,7 +9,7 @@ import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
-    <>
+    <LanguageProvider>
       <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>
@@ -23,6 +24,6 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </>
+    </LanguageProvider>
   )
 }

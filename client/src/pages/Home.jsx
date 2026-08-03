@@ -12,11 +12,12 @@ import {
   Clock,
   CheckCircle2
 } from 'lucide-react'
-import { events, ministries, serviceGallery, testimonials, faqs } from '../data/content'
+import { events, ministries, serviceGallery, testimonials, faqs, churchWithoutWallsProjects, discipleshipClasses } from '../data/content'
 import { featuredSermon } from '../data/sermons'
+import { useLanguage } from '../context/LanguageContext'
 
 export default function Home() {
-
+  const { t } = useLanguage()
 
   useEffect(() => {
     document.title = 'City Harvest Church | Coimbatore'
@@ -33,29 +34,49 @@ export default function Home() {
           loop
           playsInline
           preload="auto"
-          poster="https://static.wixstatic.com/media/89d4bd_9bf05770d0ce495d9152ee1809ffc7e0~mv2.jpg/v1/fit/w_1389,h_700,q_90,enc_avif,quality_auto/89d4bd_9bf05770d0ce495d9152ee1809ffc7e0~mv2.jpg"
+          poster="https://i.ytimg.com/vi/vSGA7lXByTU/hqdefault.jpg"
         >
           <source src="/media/hero-service.mp4" type="video/mp4" />
         </video>
 
         <div className="hero-overlay" />
 
+        {/* Floating Sacred Cross Badge on Banner */}
+        <div className="hero-cross-floating-badge">
+          <div className="cross-badge-icon">
+            <svg width="18" height="24" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 0H14V10H24V14H14V32H10V14H0V10H10V0Z" fill="#18302b" />
+            </svg>
+          </div>
+          <div>
+            <strong>Faith · Hope · Love</strong>
+            <span>Worship Jesus Together</span>
+          </div>
+        </div>
+
         <div className="shell hero-content">
-          <p className="eyebrow light-eyebrow">WELCOME HOME</p>
+          <div className="hero-faith-tag">
+            <svg width="16" height="22" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 0H14V10H24V14H14V32H10V14H0V10H10V0Z" fill="#f0c974" />
+            </svg>
+            <span>JESUS CHRIST IS LORD · COIMBATORE</span>
+          </div>
+
+          <p className="eyebrow light-eyebrow" style={{ marginTop: '12px' }}>{t('welcomeHome')}</p>
 
           <h1>
-            There’s a place
+            {t('heroTitleLine1')}
             <br />
-            <em>for you here.</em>
+            <em>{t('heroTitleLine2')}</em>
           </h1>
 
           <p className="hero-copy">
-            A community learning to love God, love people, and bring hope to our city.
+            {t('heroCopy')}
           </p>
 
           <div className="hero-actions">
             <Link className="button primary" to="/contact">
-              Plan your visit <ArrowRight size={17} />
+              {t('planVisit')} <ArrowRight size={17} />
             </Link>
           </div>
         </div>
@@ -64,7 +85,7 @@ export default function Home() {
           <div>
             <CalendarDays size={18} />
             <span>
-              <b>Sunday Gatherings</b>
+              <b>{t('sundayGatherings')}</b>
               8:30 AM &amp; 10:30 AM
             </span>
           </div>
@@ -72,17 +93,16 @@ export default function Home() {
           <div>
             <MapPin size={18} />
             <span>
-              <b>Join Us</b>
-              Coimbatore, Tamil Nadu
+              <b>{t('joinUsInPerson')}</b>
+              {t('coimbatoreTN')}
             </span>
           </div>
 
           <Link to="/contact">
-            Get Directions <ArrowRight size={16} />
+            {t('getDirections')} <ArrowRight size={16} />
           </Link>
         </div>
       </section>
-
 
       {/* Enhanced Visual Intro Section */}
       <section className="visual-intro-section section">
@@ -121,41 +141,41 @@ export default function Home() {
           {/* Right Column: Narrative Content & Key Pillars */}
           <div className="intro-narrative">
             <div className="eyebrow-accent-line" />
-            <p className="eyebrow">WHO WE ARE</p>
-            <h2>We believe church is more than a Sunday.</h2>
+            <p className="eyebrow">{t('whoWeAre')}</p>
+            <h2>{t('introHeading')}</h2>
             <p className="lead">
-              City Harvest is a vibrant family of ordinary people following an extraordinary God. Whether you’re full of faith, full of questions, or somewhere in between, you’re welcome here.
+              {t('introLead')}
             </p>
 
             <div className="pillars-list">
               <div className="pillar-item">
                 <div className="pillar-icon"><Sparkles size={20} /></div>
                 <div>
-                  <h4>Passion for God</h4>
-                  <p>Inspirations from God's word, sincere worship, and transformational prayer.</p>
+                  <h4>{t('pillar1Title')}</h4>
+                  <p>{t('pillar1Desc')}</p>
                 </div>
               </div>
 
               <div className="pillar-item">
                 <div className="pillar-icon"><HeartHandshake size={20} /></div>
                 <div>
-                  <h4>Love for People</h4>
-                  <p>Building genuine relationships, multi-generational groups, and lifelong community.</p>
+                  <h4>{t('pillar2Title')}</h4>
+                  <p>{t('pillar2Desc')}</p>
                 </div>
               </div>
 
               <div className="pillar-item">
                 <div className="pillar-icon"><BookOpen size={20} /></div>
                 <div>
-                  <h4>Hope for Coimbatore</h4>
-                  <p>Serving our city with practical outreach, food drives, and God’s compassion.</p>
+                  <h4>{t('pillar3Title')}</h4>
+                  <p>{t('pillar3Desc')}</p>
                 </div>
               </div>
             </div>
 
             <div style={{ marginTop: '32px' }}>
               <Link className="button dark" to="/about">
-                Discover our full story <ArrowRight size={17} />
+                {t('discoverStory')} <ArrowRight size={17} />
               </Link>
             </div>
           </div>
@@ -166,11 +186,11 @@ export default function Home() {
       <section className="ways-visual-section section shell">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">YOUR NEXT STEP</p>
-            <h2>There’s room for your story.</h2>
+            <p className="eyebrow">{t('yourNextStep')}</p>
+            <h2>{t('roomForStory')}</h2>
           </div>
           <p className="section-aside">
-            Whether you are exploring faith for the first time or looking for a spiritual home in Coimbatore, we’d love to walk with you.
+            {t('nextStepAside')}
           </p>
         </div>
 
@@ -180,14 +200,14 @@ export default function Home() {
               <span className="step-number">01</span>
             </div>
             <div className="card-body">
-              <h3>Visit on Sunday</h3>
-              <p>Experience a warm welcome, uplifting worship, and a practical biblically-based message for your week.</p>
+              <h3>{t('step1Title')}</h3>
+              <p>{t('step1Desc')}</p>
               <ul className="card-checklist">
                 <li><CheckCircle2 size={15} color="#a87119" /> Harvest Kids Programs</li>
                 <li><CheckCircle2 size={15} color="#a87119" /> Free Coffee & Refreshments</li>
               </ul>
               <Link className="text-link card-link" to="/contact">
-                Plan your visit <ArrowRight size={16} />
+                {t('planVisit')} <ArrowRight size={16} />
               </Link>
             </div>
           </article>
@@ -197,14 +217,14 @@ export default function Home() {
               <span className="step-number">02</span>
             </div>
             <div className="card-body">
-              <h3>Find your people</h3>
-              <p>Join a connect group where you can ask questions, build friendships, and grow in faith together.</p>
+              <h3>{t('step2Title')}</h3>
+              <p>{t('step2Desc')}</p>
               <ul className="card-checklist">
                 <li><CheckCircle2 size={15} color="#a87119" /> Midweek Home Groups</li>
                 <li><CheckCircle2 size={15} color="#a87119" /> Youth & Young Adults</li>
               </ul>
               <Link className="text-link card-link" to="/ministries">
-                Find a group <ArrowRight size={16} />
+                {t('exploreMinistries')} <ArrowRight size={16} />
               </Link>
             </div>
           </article>
@@ -214,17 +234,49 @@ export default function Home() {
               <span className="step-number">03</span>
             </div>
             <div className="card-body">
-              <h3>Make a difference</h3>
-              <p>Use your unique gifts to serve our church family and bring practical hope to the wider community.</p>
+              <h3>{t('step3Title')}</h3>
+              <p>{t('step3Desc')}</p>
               <ul className="card-checklist">
                 <li><CheckCircle2 size={15} color="#a87119" /> Volunteer Team Opportunities</li>
                 <li><CheckCircle2 size={15} color="#a87119" /> Local Coimbatore Outreach</li>
               </ul>
               <Link className="text-link card-link" to="/ministries">
-                Start serving <ArrowRight size={16} />
+                {t('exploreMinistries')} <ArrowRight size={16} />
               </Link>
             </div>
           </article>
+        </div>
+      </section>
+
+      {/* Church Without Walls — Community Outreach Section */}
+      <section className="cww-section section shell">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">{t('cwwEyebrow')}</p>
+            <h2>{t('cwwHeading')}</h2>
+          </div>
+          <p className="section-aside">
+            {t('cwwAside')}
+          </p>
+        </div>
+
+        <div className="cww-projects-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+          {churchWithoutWallsProjects.map((project) => (
+            <article key={project.title} className="cww-card" style={{ background: '#ffffff', borderRadius: '12px', overflow: 'hidden', border: '1px solid #e5dccf', boxShadow: '0 8px 24px rgba(24, 48, 43, 0.06)' }}>
+              <div className="cww-image" style={{ height: '190px', backgroundImage: `url(${project.image})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
+                <span className="tag" style={{ position: 'absolute', top: '12px', left: '12px', background: '#18302b', color: '#e9bc5f', padding: '4px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: 700 }}>
+                  {project.category}
+                </span>
+              </div>
+              <div style={{ padding: '24px' }}>
+                <h3 style={{ font: '24px "DM Serif Display"', margin: '0 0 10px' }}>{project.title}</h3>
+                <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.6, margin: '0 0 16px' }}>{project.description}</p>
+                <Link className="text-link" to="/ministries">
+                  {t('learnOutreach')} <ArrowRight size={15} />
+                </Link>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -233,11 +285,11 @@ export default function Home() {
         <div className="shell">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">FIND YOUR PLACE</p>
-              <h2>Growing happens together.</h2>
+              <p className="eyebrow">{t('findYourPlace')}</p>
+              <h2>{t('growingTogether')}</h2>
             </div>
             <Link className="text-link" to="/ministries">
-              Explore ministries <ArrowRight size={16} />
+              {t('exploreMinistries')} <ArrowRight size={16} />
             </Link>
           </div>
           <div className="ministry-grid">
@@ -255,6 +307,29 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Discipleship & School of Theology Section */}
+      <section className="section shell">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">{t('equippingSaints')}</p>
+            <h2>{t('sotHeading')}</h2>
+          </div>
+          <p className="section-aside">
+            {t('sotAside')}
+          </p>
+        </div>
+        <div className="discipleship-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+          {discipleshipClasses.map((item) => (
+            <div key={item.code} style={{ background: '#f8f5ef', padding: '28px', borderRadius: '12px', border: '1px solid #e5dccf' }}>
+              <span style={{ fontSize: '12px', fontWeight: 700, color: '#a87119', letterSpacing: '1px', display: 'block', marginBottom: '6px' }}>{item.code} · {item.duration}</span>
+              <h3 style={{ font: '24px "DM Serif Display"', margin: '0 0 10px', color: 'var(--ink)' }}>{item.title}</h3>
+              <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.6, margin: '0 0 16px' }}>{item.description}</p>
+              <span className="tag" style={{ background: '#ffffff', border: '1px solid #d1c9bb', padding: '4px 10px', borderRadius: '4px' }}>Format: {item.format}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Latest Message Feature */}
       <section className="feature section shell">
         <div
@@ -262,12 +337,12 @@ export default function Home() {
           style={{ backgroundImage: `url(${featuredSermon.thumbnail})` }}
         />
         <div className="feature-copy">
-          <p className="eyebrow">LATEST MESSAGE</p>
+          <p className="eyebrow">{t('latestMessage')}</p>
           <p className="kicker">{featuredSermon.type.toUpperCase()} · {featuredSermon.speaker.toUpperCase()}</p>
           <h2>{featuredSermon.title}</h2>
           <p>Catch up on our latest service message and be encouraged in your faith journey this week.</p>
           <Link className="button dark" to={`/sermons/${featuredSermon.slug}`}>
-            Watch message & notes <CirclePlay size={17} />
+            {t('watchMessageNotes')} <CirclePlay size={17} />
           </Link>
         </div>
       </section>
@@ -276,8 +351,8 @@ export default function Home() {
       <section className="gallery-section section shell">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">A GLIMPSE OF SUNDAY</p>
-            <h2>Worship, word and welcome.</h2>
+            <p className="eyebrow">{t('glimpseSunday')}</p>
+            <h2>{t('worshipWordWelcome')}</h2>
           </div>
           <p className="section-aside">
             Moments of worship, reflection, and community fellowship from our gatherings at City Harvest Coimbatore.
@@ -297,11 +372,11 @@ export default function Home() {
       <section className="section shell">
         <div className="section-heading">
           <div>
-            <p className="eyebrow">WHAT'S HAPPENING</p>
-            <h2>Coming up at City Harvest.</h2>
+            <p className="eyebrow">{t('whatsHappening')}</p>
+            <h2>{t('comingUp')}</h2>
           </div>
           <Link className="text-link" to="/events">
-            View all events <ArrowRight size={16} />
+            {t('viewAllEvents')} <ArrowRight size={16} />
           </Link>
         </div>
         <div className="events-list">
@@ -329,13 +404,13 @@ export default function Home() {
         <div className="shell stories-grid">
           <div className="story-image" />
           <div className="story-copy">
-            <p className="eyebrow">REAL PEOPLE. REAL STORIES.</p>
+            <p className="eyebrow">{t('realStories')}</p>
             <blockquote>“{testimonials[0].quote}”</blockquote>
             <p className="story-name">
               — {testimonials[0].name} <span>({testimonials[0].role})</span>
             </p>
             <Link className="text-link" to="/about">
-              Read our story <ArrowRight size={16} />
+              {t('discoverStory')} <ArrowRight size={16} />
             </Link>
           </div>
         </div>
@@ -344,8 +419,8 @@ export default function Home() {
       {/* FAQ Section */}
       <section className="faq section shell">
         <div>
-          <p className="eyebrow">FIRST TIME HERE?</p>
-          <h2>Questions are welcome.</h2>
+          <p className="eyebrow">{t('firstTimeHere')}</p>
+          <h2>{t('questionsWelcome')}</h2>
           <p className="lead">
             Here are a few common answers to help you feel right at home on your first Sunday visit.
           </p>
@@ -367,7 +442,7 @@ export default function Home() {
           <h2>We’d love to meet you.</h2>
           <p>Come as you are. We’ll save a seat for you this Sunday.</p>
           <Link className="button primary" to="/contact">
-            Plan your first visit <ArrowRight size={17} />
+            {t('planVisit')} <ArrowRight size={17} />
           </Link>
         </div>
       </section>
