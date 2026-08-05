@@ -15,6 +15,7 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<ContentPage type="about" />} />
+          <Route path="/location" element={<ContentPage type="location" />} />
           <Route path="/ministries" element={<ContentPage type="ministries" />} />
           <Route path="/events" element={<ContentPage type="events" />} />
           <Route path="/sermons" element={<ContentPage type="sermons" />} />

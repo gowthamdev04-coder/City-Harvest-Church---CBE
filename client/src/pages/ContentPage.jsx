@@ -57,6 +57,12 @@ export default function ContentPage({ type }) {
       body: t('aboutLead'),
       image: 'about'
     },
+    location: {
+      eyebrow: t('locationEyebrow'),
+      title: t('locationTitle'),
+      body: t('locationLead'),
+      image: 'contact'
+    },
     ministries: {
       eyebrow: t('findCommunityEyebrow'),
       title: t('ministriesTitle'),
@@ -116,6 +122,23 @@ function RenderPageSections({ type }) {
   const [giveAmount, setGiveAmount] = useState('1000')
   const [selectedFund, setSelectedFund] = useState('General Tithe')
   const [selectedGroupArea, setSelectedGroupArea] = useState('All')
+  const [selectedMinistryCat, setSelectedMinistryCat] = useState('All')
+
+  useEffect(() => {
+    // Read query parameters for category filtering if present
+    const params = new URLSearchParams(window.location.search)
+    const cat = params.get('cat')
+    if (cat) {
+      const catMap = {
+        'bible-study': 'Bible Study',
+        'church-without-walls': 'Church Without Walls',
+        'healthcare': 'Healthcare',
+        'education': 'Education',
+        'community-services': 'Community Services'
+      }
+      if (catMap[cat]) setSelectedMinistryCat(catMap[cat])
+    }
+  }, [])
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text)
@@ -127,73 +150,99 @@ function RenderPageSections({ type }) {
   if (type === 'about') {
     return (
       <>
-        {/* Intro Story & Vision */}
-        <section className="section shell">
+        {/* Founders & History Section */}
+        <section id="founders-history" className="section shell">
           <div className="split-content">
             <div>
               <p className="eyebrow">{t('ourStoryEyebrow')}</p>
               <h2 style={{ font: 'clamp(36px, 4vw, 52px)/1.05 "DM Serif Display"', margin: '12px 0 20px' }}>
-                {t('aboutTitle')}
+                {t('foundersTitle')}
               </h2>
               <p className="lead">
-                {t('aboutLead')}
+                {t('foundersLead')}
               </p>
               <p style={{ lineHeight: 1.7, color: 'var(--muted)' }}>
-                We gather every Sunday to worship, learn from Scripture, and care for one another as a spiritual family. Through the week, we scatter across homes, workplaces, and campuses to live out that love in our local neighborhoods.
+                Founded with a deep burden to reach Coimbatore with God’s unconditional love, City Harvest Church began as a small prayer gathering. Over the years, through sincere worship, sound biblical teaching, and persistent community outreach, God has expanded our family across the city.
               </p>
             </div>
             <aside className="info-card">
-              <h3>Our Pillars</h3>
-              <p><b>Jesus First</b><br />We keep the good news of the gospel central to all we do.</p>
-              <p><b>People Matter</b><br />Everyone has a place to belong and a God-given purpose.</p>
-              <p><b>Love in Action</b><br />Faith makes a tangible difference in our city.</p>
+              <h3>{t('foundersTitle')}</h3>
+              <p><b>Heritage of Prayer</b><br />Established on foundational prayer and commitment to God's Word.</p>
+              <p><b>Generational Impact</b><br />Building a multi-generational community where every age belongs.</p>
+              <p><b>City Harvest Outreach</b><br />Serving underprivileged families and senior citizens across Coimbatore.</p>
             </aside>
           </div>
         </section>
 
-        {/* Leadership Team Section */}
-        <section className="soft-section section">
+        {/* Vision & Mission Section */}
+        <section id="vision-mission" className="soft-section section">
           <div className="shell">
             <div className="section-heading">
               <div>
-                <p className="eyebrow">{t('meetTeam')}</p>
-                <h2>{t('pastoralLeadership')}</h2>
+                <p className="eyebrow">OUR PURPOSE</p>
+                <h2>{t('visionMissionTitle')}</h2>
               </div>
-              <p className="section-aside">
-                {t('leadershipDesc')}
-              </p>
             </div>
-            <div className="team-grid">
-              {leadership.map((person) => (
-                <article key={person.name} className="team-card">
-                  <div className="team-image" style={{ backgroundImage: `url(${person.image})` }} />
-                  <div className="team-info">
-                    <h3>{person.name}</h3>
-                    <span className="team-role">{person.role}</span>
-                    <p>{person.bio}</p>
-                  </div>
-                </article>
-              ))}
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px' }}>
+              <div style={{ background: '#ffffff', padding: '36px', borderRadius: '12px', border: '1px solid var(--gold-card-border)', boxShadow: 'var(--shadow-card)' }}>
+                <span style={{ display: 'inline-flex', padding: '10px', background: '#fdf6e7', borderRadius: '8px', color: '#b8860b', marginBottom: '16px' }}><Sparkles size={24} /></span>
+                <h3 style={{ font: '28px "DM Serif Display"', margin: '0 0 12px', color: 'var(--ink)' }}>{t('visionTitle')}</h3>
+                <p style={{ color: 'var(--muted)', lineHeight: 1.7, fontSize: '16px', margin: 0 }}>{t('visionDesc')}</p>
+              </div>
+
+              <div style={{ background: '#ffffff', padding: '36px', borderRadius: '12px', border: '1px solid var(--gold-card-border)', boxShadow: 'var(--shadow-card)' }}>
+                <span style={{ display: 'inline-flex', padding: '10px', background: '#fdf6e7', borderRadius: '8px', color: '#b8860b', marginBottom: '16px' }}><Heart size={24} /></span>
+                <h3 style={{ font: '28px "DM Serif Display"', margin: '0 0 12px', color: 'var(--ink)' }}>{t('missionTitle')}</h3>
+                <p style={{ color: 'var(--muted)', lineHeight: 1.7, fontSize: '16px', margin: 0 }}>{t('missionDesc')}</p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Statement of Faith Section */}
-        <section className="section shell">
+        {/* Leadership Team Section */}
+        <section id="leadership" className="section shell">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">{t('whatWeBelieve')}</p>
-              <h2>{t('foundationsFaith')}</h2>
+              <p className="eyebrow">{t('meetTeam')}</p>
+              <h2>{t('pastoralLeadership')}</h2>
             </div>
+            <p className="section-aside">
+              {t('leadershipDesc')}
+            </p>
           </div>
-          <div className="beliefs-grid">
-            {coreBeliefs.map((belief) => (
-              <article key={belief.title} className="belief-card">
-                <span className="belief-icon"><BookOpen size={20} /></span>
-                <h3>{belief.title}</h3>
-                <p>{belief.text}</p>
+          <div className="team-grid">
+            {leadership.map((person) => (
+              <article key={person.name} className="team-card">
+                <div className="team-image" style={{ backgroundImage: `url(${person.image})` }} />
+                <div className="team-info">
+                  <h3>{person.name}</h3>
+                  <span className="team-role">{person.role}</span>
+                  <p>{person.bio}</p>
+                </div>
               </article>
             ))}
+          </div>
+        </section>
+
+        {/* Statement of Faith Section */}
+        <section className="soft-section section">
+          <div className="shell">
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">{t('whatWeBelieve')}</p>
+                <h2>{t('foundationsFaith')}</h2>
+              </div>
+            </div>
+            <div className="beliefs-grid">
+              {coreBeliefs.map((belief) => (
+                <article key={belief.title} className="belief-card">
+                  <span className="belief-icon"><BookOpen size={20} /></span>
+                  <h3>{belief.title}</h3>
+                  <p>{belief.text}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -214,73 +263,111 @@ function RenderPageSections({ type }) {
 
   // --- MINISTRIES PAGE SECTIONS ---
   if (type === 'ministries') {
+    const ministryCategories = [
+      'All',
+      'Bible Study',
+      'Church Without Walls',
+      'Healthcare',
+      'Education',
+      'Community Services'
+    ]
+
     return (
       <>
-        {/* Ministries Deep Dive */}
+        {/* Ministries Category Filter Tabs */}
         <section className="section shell">
           <div className="section-heading">
             <div>
-              <p className="eyebrow">MINISTRY DEEP DIVE</p>
-              <h2>Tailored spaces for every age and stage.</h2>
-            </div>
-          </div>
-          <div className="ministry-grid full">
-            {ministries.map((m) => (
-              <article className="ministry-card enhanced-m-card" key={m.title}>
-                <span className="ministry-icon">{m.icon}</span>
-                <h3>{m.title}</h3>
-                <p className="ministry-sub" style={{ color: '#a87119', fontWeight: 600, fontSize: '13px', marginBottom: '8px' }}>
-                  {m.subtitle}
-                </p>
-                <p>{m.text}</p>
-                <div className="m-schedule" style={{ background: '#f8f5ef', padding: '10px 14px', borderRadius: '4px', margin: '16px 0', fontSize: '13px', color: 'var(--ink)', fontWeight: 600 }}>
-                  <Clock size={14} style={{ display: 'inline', marginRight: '6px', color: '#a87119' }} /> {m.schedule}
-                </div>
-                <ul className="card-checklist" style={{ margin: '0 0 20px', listStyle: 'none', padding: 0 }}>
-                  {m.highlights.map((h) => (
-                    <li key={h} style={{ fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
-                      <CheckCircle2 size={14} color="#a87119" /> {h}
-                    </li>
-                  ))}
-                </ul>
-                <Link className="text-link" to="/contact" style={{ marginTop: 'auto' }}>
-                  Get connected <ArrowRight size={16} />
-                </Link>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        {/* Church Without Walls Community Outreach Section (Inspired by CHC) */}
-        <section className="cww-section section shell">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">CHURCH WITHOUT WALLS</p>
-              <h2>Loving Coimbatore Beyond the Sanctuary</h2>
+              <p className="eyebrow">{t('findCommunityEyebrow')}</p>
+              <h2>{t('ministriesTitle')}</h2>
             </div>
             <p className="section-aside">
-              Bringing hope, practical care, and God's love to the needy and vulnerable in our city.
+              {t('ministriesLead')}
             </p>
           </div>
 
-          <div className="cww-projects-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
-            {churchWithoutWallsProjects.map((project) => (
-              <article key={project.title} className="cww-card" style={{ background: '#ffffff', borderRadius: '12px', overflow: 'hidden', border: '1px solid #e5dccf', boxShadow: '0 8px 24px rgba(24, 48, 43, 0.06)' }}>
-                <div className="cww-image" style={{ height: '190px', backgroundImage: `url(${project.image})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
-                  <span className="tag" style={{ position: 'absolute', top: '12px', left: '12px', background: '#18302b', color: '#e9bc5f', padding: '4px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: 700 }}>
-                    {project.category}
-                  </span>
-                </div>
-                <div style={{ padding: '24px' }}>
-                  <h3 style={{ font: '24px "DM Serif Display"', margin: '0 0 10px' }}>{project.title}</h3>
-                  <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.6, margin: '0 0 16px' }}>{project.description}</p>
-                  <Link className="text-link" to="/contact">
-                    Get involved <ArrowRight size={15} />
-                  </Link>
-                </div>
-              </article>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '36px' }}>
+            {ministryCategories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedMinistryCat(cat)}
+                style={{
+                  padding: '10px 18px',
+                  borderRadius: '24px',
+                  border: selectedMinistryCat === cat ? '1px solid #b8860b' : '1px solid #d1c9bb',
+                  background: selectedMinistryCat === cat ? '#18302b' : '#ffffff',
+                  color: selectedMinistryCat === cat ? '#e9bc5f' : 'var(--ink)',
+                  fontWeight: 700,
+                  fontSize: '13px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                {cat === 'Bible Study' && '📖 '}
+                {cat === 'Church Without Walls' && '🧱 '}
+                {cat === 'Healthcare' && '🩺 '}
+                {cat === 'Education' && '🎓 '}
+                {cat === 'Community Services' && '🤝 '}
+                {cat}
+              </button>
             ))}
           </div>
+
+          {/* Render filtered categories */}
+          {(selectedMinistryCat === 'All' || selectedMinistryCat === 'Bible Study') && (
+            <div style={{ marginBottom: '48px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
+                <span style={{ fontSize: '20px' }}>📖</span>
+                <h3 style={{ font: '28px "DM Serif Display"', margin: 0 }}>{t('bibleStudyTitle')}</h3>
+              </div>
+              <p style={{ color: 'var(--muted)', fontSize: '15px', marginBottom: '24px' }}>{t('bibleStudyDesc')}</p>
+              <div className="discipleship-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+                {discipleshipClasses.map((item) => (
+                  <div key={item.code} style={{ background: '#ffffff', padding: '28px', borderRadius: '12px', border: '1px solid var(--gold-card-border)', boxShadow: 'var(--shadow-card)' }}>
+                    <span style={{ fontSize: '12px', fontWeight: 700, color: '#b8860b', letterSpacing: '1px', display: 'block', marginBottom: '6px' }}>{item.code} · {item.duration}</span>
+                    <h4 style={{ font: '22px "DM Serif Display"', margin: '0 0 10px', color: 'var(--ink)' }}>{item.title}</h4>
+                    <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.6, margin: '0 0 16px' }}>{item.description}</p>
+                    <span className="tag" style={{ background: '#fdf6e7', border: '1px solid #e0d5c3', color: '#b8860b', padding: '4px 10px', borderRadius: '4px', fontSize: '12px', fontWeight: 700 }}>Format: {item.format}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {(selectedMinistryCat === 'All' || selectedMinistryCat === 'Church Without Walls' || selectedMinistryCat === 'Healthcare' || selectedMinistryCat === 'Education' || selectedMinistryCat === 'Community Services') && (
+            <div style={{ marginBottom: '48px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
+                <span style={{ fontSize: '20px' }}>🧱</span>
+                <h3 style={{ font: '28px "DM Serif Display"', margin: 0 }}>{t('cwwTitle')} &amp; Outreach Projects</h3>
+              </div>
+              <div className="cww-projects-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+                {churchWithoutWallsProjects
+                  .filter((p) => {
+                    if (selectedMinistryCat === 'All' || selectedMinistryCat === 'Church Without Walls') return true
+                    if (selectedMinistryCat === 'Community Services' && p.title.includes('Food')) return true
+                    if (selectedMinistryCat === 'Education' && p.title.includes('Youth')) return true
+                    if (selectedMinistryCat === 'Healthcare' && p.title.includes('Hospital')) return true
+                    return false
+                  })
+                  .map((project) => (
+                    <article key={project.title} className="cww-card" style={{ background: '#ffffff', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--gold-card-border)', boxShadow: 'var(--shadow-card)' }}>
+                      <div className="cww-image" style={{ height: '190px', backgroundImage: `url(${project.image})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
+                        <span className="tag" style={{ position: 'absolute', top: '12px', left: '12px', background: '#18302b', color: '#e9bc5f', padding: '4px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: 700 }}>
+                          {project.category}
+                        </span>
+                      </div>
+                      <div style={{ padding: '24px' }}>
+                        <h4 style={{ font: '22px "DM Serif Display"', margin: '0 0 10px' }}>{project.title}</h4>
+                        <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.6, margin: '0 0 16px' }}>{project.description}</p>
+                        <Link className="text-link" to="/contact">
+                          Get involved <ArrowRight size={15} />
+                        </Link>
+                      </div>
+                    </article>
+                  ))}
+              </div>
+            </div>
+          )}
         </section>
 
         {/* School of Theology & Bible Study Classes */}
