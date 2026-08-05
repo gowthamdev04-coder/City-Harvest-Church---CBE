@@ -1,27 +1,32 @@
 import { useState, useEffect } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
-import { Menu, X, ArrowUpRight, Radio, HeartHandshake, PlayCircle, Globe } from 'lucide-react'
+import { Menu, X, ArrowUpRight, Radio, HeartHandshake, PlayCircle, Globe, ChevronDown } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 
 export default function Layout() {
   const [open, setOpen] = useState(false)
   const [showQuickWidget, setShowQuickWidget] = useState(true)
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false)
+  const [ministriesDropdownOpen, setMinistriesDropdownOpen] = useState(false)
   const { lang, setLang, t } = useLanguage()
-
-  const links = [
-    [t('navAbout'), '/about'],
-    [t('navMinistries'), '/ministries'],
-    [t('navEvents'), '/events'],
-    [t('navSermons'), '/sermons']
-  ]
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') setOpen(false)
+      if (e.key === 'Escape') {
+        setOpen(false)
+        setAboutDropdownOpen(false)
+        setMinistriesDropdownOpen(false)
+      }
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
+
+  const handleNavClick = () => {
+    setOpen(false)
+    setAboutDropdownOpen(false)
+    setMinistriesDropdownOpen(false)
+  }
 
   return (
     <>
@@ -35,7 +40,7 @@ export default function Layout() {
             {t('tickerText')}
           </span>
           
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '16px' }}>
             <a 
               href="https://www.youtube.com/@CityHarvest.online" 
               target="_blank" 
@@ -68,7 +73,7 @@ export default function Layout() {
 
       <header className="site-header">
         <div className="shell nav-wrap">
-          <Link className="brand" to="/" onClick={() => setOpen(false)}>
+          <Link className="brand" to="/" onClick={handleNavClick}>
             <div className="brand-logo-badge">
               <img className="brand-logo" src="/images/city-harvest-logo.jpg" alt="City Harvest Church Coimbatore" />
             </div>
@@ -81,15 +86,86 @@ export default function Layout() {
           <button className="menu-toggle" onClick={() => setOpen(!open)} aria-label="Toggle navigation" aria-expanded={open}>
             {open ? <X /> : <Menu />}
           </button>
-          {open && <div className="nav-backdrop" onClick={() => setOpen(false)} />}
+          {open && <div className="nav-backdrop" onClick={handleNavClick} />}
 
           <nav className={open ? 'nav open' : 'nav'}>
-            {links.map(([name, to]) => (
-              <NavLink key={to} to={to} onClick={() => setOpen(false)}>
-                {name}
+            <NavLink to="/" onClick={handleNavClick}>
+              {t('navHome')}
+            </NavLink>
+
+            {/* About Dropdown */}
+            <div 
+              className="nav-item-dropdown"
+              onMouseEnter={() => setAboutDropdownOpen(true)}
+              onMouseLeave={() => setAboutDropdownOpen(false)}
+            >
+              <NavLink 
+                to="/about" 
+                onClick={handleNavClick}
+                className="dropdown-trigger-link"
+              >
+                {t('navAbout')} <ChevronDown size={14} />
               </NavLink>
-            ))}
-            <NavLink to="/contact" onClick={() => setOpen(false)}>
+
+              <div className={`dropdown-menu ${aboutDropdownOpen ? 'show' : ''}`}>
+                <Link to="/about#founders-history" onClick={handleNavClick}>
+                  {t('navFoundersHistory')}
+                </Link>
+                <Link to="/about#leadership" onClick={handleNavClick}>
+                  {t('navLeadership')}
+                </Link>
+                <Link to="/about#vision-mission" onClick={handleNavClick}>
+                  {t('navVisionMission')}
+                </Link>
+              </div>
+            </div>
+
+            <NavLink to="/location" onClick={handleNavClick}>
+              {t('navLocation')}
+            </NavLink>
+
+            {/* Ministries Dropdown */}
+            <div 
+              className="nav-item-dropdown"
+              onMouseEnter={() => setMinistriesDropdownOpen(true)}
+              onMouseLeave={() => setMinistriesDropdownOpen(false)}
+            >
+              <NavLink 
+                to="/ministries" 
+                onClick={handleNavClick}
+                className="dropdown-trigger-link"
+              >
+                {t('navMinistries')} <ChevronDown size={14} />
+              </NavLink>
+
+              <div className={`dropdown-menu ${ministriesDropdownOpen ? 'show' : ''}`}>
+                <Link to="/ministries?cat=bible-study" onClick={handleNavClick}>
+                  {t('navBibleStudy')}
+                </Link>
+                <Link to="/ministries?cat=church-without-walls" onClick={handleNavClick}>
+                  {t('navChurchWithoutWalls')}
+                </Link>
+                <Link to="/ministries?cat=healthcare" onClick={handleNavClick}>
+                  {t('navHealthcare')}
+                </Link>
+                <Link to="/ministries?cat=education" onClick={handleNavClick}>
+                  {t('navEducation')}
+                </Link>
+                <Link to="/ministries?cat=community-services" onClick={handleNavClick}>
+                  {t('navCommunityServices')}
+                </Link>
+              </div>
+            </div>
+
+            <NavLink to="/events" onClick={handleNavClick}>
+              {t('navEvents')}
+            </NavLink>
+
+            <NavLink to="/sermons" onClick={handleNavClick}>
+              {t('navSermons')}
+            </NavLink>
+
+            <NavLink to="/contact" onClick={handleNavClick}>
               {t('navContact')}
             </NavLink>
 
@@ -110,7 +186,7 @@ export default function Layout() {
               </button>
             </div>
 
-            <Link className="nav-give" to="/give" onClick={() => setOpen(false)}>
+            <Link className="nav-give" to="/give" onClick={handleNavClick}>
               {t('navGive')} <ArrowUpRight size={15} />
             </Link>
           </nav>

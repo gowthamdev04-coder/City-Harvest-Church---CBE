@@ -1,13 +1,20 @@
 export const translations = {
   en: {
-    // Header & Nav
+    // Header & Nav Architecture
     navHome: 'Home',
     navAbout: 'About',
+    navFoundersHistory: 'Founders & History',
+    navLeadership: 'Leadership',
+    navVisionMission: 'Vision & Mission',
+    navLocation: 'Location',
     navMinistries: 'Ministries',
-    navEvents: 'Events',
-    navSermons: 'Sermons',
-    navContact: "I'm New",
+    navBibleStudy: 'Bible Study',
+    navChurchWithoutWalls: 'Church Without Walls',
+    navHealthcare: 'Healthcare',
+    navEducation: 'Education',
+    navCommunityServices: 'Community Services',
     navGive: 'Give',
+    navContact: 'Contact',
     tickerLive: 'NEXT SUNDAY',
     tickerText: 'Gatherings at 8:30 AM & 10:30 AM · Broadcast Live on @CityHarvest.online',
     watchOnline: 'Watch Online',
@@ -35,6 +42,47 @@ export const translations = {
     pillar3Desc: 'Serving our city with practical outreach, food drives, and God’s compassion.',
     discoverStory: 'Discover our full story',
 
+    // About Page Sub-sections
+    ourStoryEyebrow: 'OUR STORY & HERITAGE',
+    aboutTitle: 'Founders, Leadership & Mission.',
+    aboutLead: 'City Harvest Church is a Christ-centred community in Coimbatore committed to seeing people encounter Jesus and live out His love in every part of life.',
+    foundersTitle: 'Founders & Church History',
+    foundersLead: 'Founded with a divine vision to build a vibrant house of prayer and hope in Coimbatore, City Harvest Church has grown from a humble home gathering into a thriving spiritual family.',
+    visionMissionTitle: 'Vision & Mission',
+    visionTitle: 'Our Vision',
+    visionDesc: 'To build a strong, spirit-led, multi-generational church in Coimbatore that equips saints and transforms families for generations.',
+    missionTitle: 'Our Mission',
+    missionDesc: 'To love God sincerely, love people unconditionally, make disciples passionately, and bring practical Gospel hope to our city.',
+    meetTeam: 'LEADERSHIP TEAM',
+    pastoralLeadership: 'Pastoral & Ministry Leadership',
+    leadershipDesc: 'Dedicated leaders serving our church family and guiding our ministries in Coimbatore.',
+    whatWeBelieve: 'WHAT WE BELIEVE',
+    foundationsFaith: 'Foundations of Our Faith',
+
+    // Location Page
+    locationEyebrow: 'VISIT US IN PERSON',
+    locationTitle: 'Church Location & Service Times',
+    locationLead: 'We gather every Sunday at 8:30 AM & 10:30 AM in Coimbatore, Tamil Nadu. Find directions, parking, and service details below.',
+    serviceTimesTitle: 'Sunday Service Times',
+    churchAddressTitle: 'Church Address',
+    parkingTransTitle: 'Parking & Transport',
+    kidsLocationTitle: 'Harvest Kidz Environment',
+
+    // Ministries Categories
+    findCommunityEyebrow: 'MINISTRIES & OUTREACH',
+    ministriesTitle: 'Serving God and Our City.',
+    ministriesLead: 'Explore Bible Study classes, Church Without Walls community outreach, healthcare visits, youth education, and practical community care.',
+    bibleStudyTitle: 'Bible Study & Discipleship',
+    bibleStudyDesc: 'Systematic study of Scripture, School of Theology foundation classes, and midweek bible study groups.',
+    cwwTitle: 'Church Without Walls',
+    cwwDesc: 'Taking the love of Jesus beyond the church doors through practical community outreach, food relief, and senior care.',
+    healthcareTitle: 'Healthcare Ministry',
+    healthcareDesc: 'Compassionate hospital ward visitations, prayer for the sick, and health awareness drives across Coimbatore.',
+    educationTitle: 'Education & NextGen',
+    educationDesc: 'Providing free academic tutoring, moral values education, and youth mentorship to empower students.',
+    communityServicesTitle: 'Community Services',
+    communityServicesDesc: 'Monthly grocery distribution, food relief for underprivileged families, and practical benevolence care.',
+
     // Next Steps
     yourNextStep: 'YOUR NEXT STEP',
     roomForStory: "There's room for your story.",
@@ -45,20 +93,6 @@ export const translations = {
     step2Desc: 'Join a connect group where you can ask questions, build friendships, and grow in faith together.',
     step3Title: 'Make a difference',
     step3Desc: 'Use your unique gifts to serve our church family and bring practical hope to the wider community.',
-
-    // Church Without Walls
-    cwwEyebrow: 'CHURCH WITHOUT WALLS',
-    cwwHeading: 'Loving Coimbatore Beyond the Sanctuary.',
-    cwwAside: "Following Christ's command to serve the needy, elderly, and underprivileged across our city.",
-    learnOutreach: 'Learn about outreach',
-
-    // Ministries & SOT
-    findYourPlace: 'FIND YOUR PLACE',
-    growingTogether: 'Growing happens together.',
-    exploreMinistries: 'Explore ministries',
-    equippingSaints: 'EQUIPPING THE SAINTS',
-    sotHeading: 'School of Theology & Bible Study',
-    sotAside: 'Deepen your faith, learn sound doctrine, and be empowered for Christian leadership.',
 
     // Messages & Events
     latestMessage: 'LATEST MESSAGE',
@@ -74,48 +108,6 @@ export const translations = {
     needPrayer: 'Need prayer?',
     requestPrayer: 'Request Prayer',
     watchLive: 'Watch Live',
-
-    // About Page
-    ourStoryEyebrow: 'OUR STORY',
-    aboutTitle: 'A church for the city.',
-    aboutLead: 'City Harvest Church is a Christ-centred community in Coimbatore committed to seeing people encounter Jesus and live out His love in every part of life.',
-    meetTeam: 'MEET OUR TEAM',
-    pastoralLeadership: 'Pastoral & Ministry Leadership',
-    leadershipDesc: 'Dedicated leaders serving our church family and guiding our ministries in Coimbatore.',
-    whatWeBelieve: 'WHAT WE BELIEVE',
-    foundationsFaith: 'Foundations of Our Faith',
-
-    // Ministries Page
-    findCommunityEyebrow: 'FIND COMMUNITY',
-    ministriesTitle: 'There is a place for you.',
-    ministriesLead: 'Every generation and every story matters. Find a community where you can grow in faith, serve others, and truly belong.',
-    ministryDeepDive: 'MINISTRY DEEP DIVE',
-    tailoredSpaces: 'Tailored spaces for every age and stage.',
-    midweekLife: 'MIDWEEK LIFE',
-    connectGroupsHeading: 'Coimbatore Connect Groups',
-    connectGroupsLead: 'Connect groups meet in homes across Coimbatore to study Scripture, pray together, and build life-giving friendships.',
-    joinThisGroup: 'Join this group',
-
-    // Events Page
-    saveDateEyebrow: 'SAVE THE DATE',
-    eventsTitle: 'Life is better together.',
-    eventsLead: 'Conferences, youth nights, community tables, and special gatherings at City Harvest Coimbatore.',
-    upcomingSpecialEvent: 'UPCOMING SPECIAL EVENT',
-    markCalendar: 'Mark Your Calendar',
-    savedCalendar: 'Saved to calendar',
-    register: 'Register',
-
-    // Sermons Page
-    watchListenEyebrow: 'WATCH & LISTEN',
-    sermonsTitle: 'Messages for your journey.',
-    sermonsLead: 'Explore biblically grounded teachings, Sunday worship recordings, and discipleship series from City Harvest.',
-    featuredMessage: 'FEATURED MESSAGE',
-    teachingSeries: 'TEACHING SERIES',
-    watchSeriesYouTube: 'Watch full series on YouTube',
-    latestUploads: 'From City Harvest Online',
-    audioMessages: 'AUDIO MESSAGES',
-    listenOnGo: 'Listen on the go.',
-    listenAudioDesc: 'Stream our Sunday audio sermons on Spotify, Apple Podcasts, and Google Podcasts.',
 
     // Give Page
     generosityEyebrow: 'MAKE AN IMPACT',
@@ -159,14 +151,21 @@ export const translations = {
   },
 
   ta: {
-    // Header & Nav
+    // Header & Nav Architecture
     navHome: 'முகப்பு',
     navAbout: 'எங்களைப் பற்றி',
+    navFoundersHistory: 'நிறுவுநர்கள் & வரலாறு',
+    navLeadership: 'தலைமைத்துவம்',
+    navVisionMission: 'தரிசனம் & நோக்கம்',
+    navLocation: 'அமைவிடம்',
     navMinistries: 'ஊழியங்கள்',
-    navEvents: 'நிகழ்வுகள்',
-    navSermons: 'செய்திகள்',
-    navContact: 'புதியவர்',
+    navBibleStudy: 'பைபிள் படிப்பு',
+    navChurchWithoutWalls: 'சுவர்களற்ற சபை',
+    navHealthcare: 'மருத்துவ ஊழியம்',
+    navEducation: 'கல்வி ஊழியம்',
+    navCommunityServices: 'சமூக சேவைகள்',
     navGive: 'கொடுங்கள்',
+    navContact: 'தொடர்புகொள்ள',
     tickerLive: 'அடுத்த ஞாயிறு',
     tickerText: 'ஆராதனைகள் காலை 8:30 & 10:30 · நேரலை @CityHarvest.online',
     watchOnline: 'ஆன்லைனில் காண்க',
@@ -194,6 +193,47 @@ export const translations = {
     pillar3Desc: 'நமது நகரத்திற்கு உணவு உதவி மற்றும் தேவ அன்பின் மூலம் சேவை செய்தல்.',
     discoverStory: 'எங்கள் கதையை அறிந்துகொள்ளுங்கள்',
 
+    // About Page Sub-sections
+    ourStoryEyebrow: 'எங்கள் வரலாறு & பாரம்பரியம்',
+    aboutTitle: 'நிறுவுநர்கள், தலைமைத்துவம் & தரிசனம்.',
+    aboutLead: 'சிட்டி ஹார்வெஸ்ட் சர்ச் என்பது கோயம்புத்தூரில் உள்ள கிறிஸ்துவை மையமாகக் கொண்ட ஒரு சபை. மக்கள் இயேசுவைச் சந்திக்கவும் அவரது அன்பை வாழவும் அர்ப்பணிக்கப்பட்டுள்ளது.',
+    foundersTitle: 'நிறுவுநர்கள் & சபை வரலாறு',
+    foundersLead: 'கோவையில் ஜெபத்தின் இல்லத்தையும் நம்பிக்கையையும் கட்டியெழுப்பும் தெய்வீக தரிசனத்துடன் தொடங்கப்பட்ட சிட்டி ஹார்வெஸ்ட் சர்ச், ஒரு சிறிய ஜெபக் குழுவிலிருந்து இன்று வளரும் ஆன்மீகக் குடும்பமாக உருவெடுத்துள்ளது.',
+    visionMissionTitle: 'தரிசனம் & நோக்கம்',
+    visionTitle: 'எங்கள் தரிசனம்',
+    visionDesc: 'கோவையில் பரிசுத்தவான்களை ஆயத்தப்படுத்தி, தலைமுறைகளை உருமாற்றும் ஆவியானவரால் வழிநடத்தப்படும் பலமான சபையைக் கட்டுதல்.',
+    missionTitle: 'எங்கள் நோக்கம்',
+    missionDesc: 'தேவனை உண்மையாக நேசிப்பது, மக்களை நிபந்தனையின்றி நேசிப்பது, சீஷர்களை உருவாக்குவது மற்றும் நமது நகரத்திற்கு நற்செய்தியின் நம்பிக்கையைக் கொண்டுவருவது.',
+    meetTeam: 'தலைமைத்துவக் குழு',
+    pastoralLeadership: 'போதகர் & ஊழிய தலைமைத்துவம்',
+    leadershipDesc: 'எங்கள் சபை குடும்பத்திற்கு சேவை செய்யும் அர்ப்பணிப்புள்ள தலைவர்கள்.',
+    whatWeBelieve: 'நாங்கள் விசுவாசிப்பது',
+    foundationsFaith: 'எங்கள் விசுவாசத்தின் அஸ்திபாரம்',
+
+    // Location Page
+    locationEyebrow: 'நேரில் வாருங்கள்',
+    locationTitle: 'சபை அமைவிடம் & ஆராதனை நேரங்கள்',
+    locationLead: 'ஒவ்வொரு ஞாயிற்றுக்கிழமையும் காலை 8:30 & 10:30 மணிக்கு கோயம்புத்தூரில் கூடுகிறோம். வழித்தடம் மற்றும் விவரங்களை கீழே காண்க.',
+    serviceTimesTitle: 'ஞாயிறு ஆராதனை நேரங்கள்',
+    churchAddressTitle: 'சபை முகவரி',
+    parkingTransTitle: 'பார்க்கிங் & போக்குவரத்து',
+    kidsLocationTitle: 'பிள்ளைகள் ஆராதனை இடம் (Harvest Kidz)',
+
+    // Ministries Categories
+    findCommunityEyebrow: 'ஊழியங்கள் & உதவிகள்',
+    ministriesTitle: 'தேவனுக்கும் நகரத்திற்கும் சேவை செய்கிறோம்.',
+    ministriesLead: 'பைபிள் படிப்பு வகுப்புகள், சுவர்களற்ற சபை உதவிகள், மருத்துவ ஊழியம், இளைஞர் கல்வி மற்றும் சமூக சேவைகளை ஆராயுங்கள்.',
+    bibleStudyTitle: 'பைபிள் படிப்பு & சீஷத்துவம்',
+    bibleStudyDesc: 'வேதாகமப் படிப்பு, வேதாகமக் கல்லூரி அடிப்படை வகுப்புகள் மற்றும் வாரநடுப்பகுதி பைபிள் படிப்பு குழுக்கள்.',
+    cwwTitle: 'சுவர்களற்ற சபை (Church Without Walls)',
+    cwwDesc: 'ஆலயச் சுவர்களைத் தாண்டி உணவு உதவி மற்றும் முதியோர் பராமரிப்பு மூலம் இயேசுவின் அன்பைப் பகிர்வது.',
+    healthcareTitle: 'மருத்துவ ஊழியம் (Healthcare)',
+    healthcareDesc: 'மருத்துவமனை வார்டுகளுக்குச் சென்று ஜெபிப்பது மற்றும் நோயாளிகளுக்கு மருத்துவ உதவிகளை வழங்குவது.',
+    educationTitle: 'கல்வி ஊழியம் (Education)',
+    educationDesc: 'எளிய மாணவர்களுக்கு இலவச கல்வி வழிகாட்டுதல், பாடம் சொல்லிக்கொடுத்தல் மற்றும் நற்பண்புப் பயிற்சி அளிப்பது.',
+    communityServicesTitle: 'சமூக சேவைகள் (Community Services)',
+    communityServicesDesc: 'மாதாந்திர மளிகைப் பொருட்கள் விநியோகம் மற்றும் தேவையிலுள்ள குடும்பங்களுக்கு உணவு வழங்குவது.',
+
     // Next Steps
     yourNextStep: 'உங்கள் அடுத்த அடி',
     roomForStory: 'உங்கள் கதைக்கு இங்கே இடம் உண்டு.',
@@ -204,20 +244,6 @@ export const translations = {
     step2Desc: 'கேள்விகள் கேட்கவும், நட்பை வளர்க்கவும், விசுவாசத்தில் வளரவும் இணைப்பு குழுவில் இணையுங்கள்.',
     step3Title: 'மாற்றத்தை உருவாக்குங்கள்',
     step3Desc: 'உங்கள் தனித்துவமான வரங்களைப் பயன்படுத்தி சபை குடும்பத்திற்கு சேவை செய்யுங்கள்.',
-
-    // Church Without Walls
-    cwwEyebrow: 'சுவர்களற்ற சபை',
-    cwwHeading: 'ஆலயத்தைத் தாண்டி கோவையை நேசிக்கிறோம்.',
-    cwwAside: 'எங்கள் நகரம் முழுவதும் தேவையிலுள்ளோர், முதியோர் மற்றும் எளியோருக்குச் சேவை செய்யும் கிறிஸ்துவின் கட்டளை.',
-    learnOutreach: 'ஊழியத்தைப் பற்றி அறிய',
-
-    // Ministries & SOT
-    findYourPlace: 'உங்கள் இடத்தை கண்டறியுங்கள்',
-    growingTogether: 'வளர்ச்சி ஒன்றாக நடக்கிறது.',
-    exploreMinistries: 'ஊழியங்களை ஆராயுங்கள்',
-    equippingSaints: 'பரிசுத்தவான்களை ஆயத்தப்படுத்துதல்',
-    sotHeading: 'வேதாகமக் கல்லூரி & பைபிள் படிப்பு',
-    sotAside: 'உங்கள் விசுவாசத்தை ஆழப்படுத்துங்கள், சத்தியத்தைக் கற்றுக்கொண்டு கிறிஸ்துவ தலைமைத்துவத்திற்கு ஆயத்தமாகுங்கள்.',
 
     // Messages & Events
     latestMessage: 'சமீபத்திய செய்தி',
@@ -233,48 +259,6 @@ export const translations = {
     needPrayer: 'ஜெபம் தேவையா?',
     requestPrayer: 'ஜெப விண்ணப்பம் அளிக்கவும்',
     watchLive: 'நேரலையில் காண்க',
-
-    // About Page
-    ourStoryEyebrow: 'எங்கள் வரலாறு',
-    aboutTitle: 'நகரத்திற்கான சபை.',
-    aboutLead: 'சிட்டி ஹார்வெஸ்ட் சர்ச் என்பது கோயம்புத்தூரில் உள்ள கிறிஸ்துவை மையமாகக் கொண்ட ஒரு சபை. மக்கள் இயேசுவைச் சந்திக்கவும் அவரது அன்பை வாழவும் அர்ப்பணிக்கப்பட்டுள்ளது.',
-    meetTeam: 'எங்கள் தலைவர்கள்',
-    pastoralLeadership: 'போதகர் & ஊழிய தலைமைத்துவம்',
-    leadershipDesc: 'எங்கள் சபை குடும்பத்திற்கு சேவை செய்யும் அர்ப்பணிப்புள்ள தலைவர்கள்.',
-    whatWeBelieve: 'நாங்கள் விசுவாசிப்பது',
-    foundationsFaith: 'எங்கள் விசுவாசத்தின் அஸ்திபாரம்',
-
-    // Ministries Page
-    findCommunityEyebrow: 'தோழமையைக் கண்டறியுங்கள்',
-    ministriesTitle: 'உங்களுக்கு இங்கே ஓர் இடம் உண்டு.',
-    ministriesLead: 'ஒவ்வொரு தலைமுறையும் முக்கியமானது. நீங்கள் விசுவாசத்தில் வளரக்கூடிய சமூகத்தைக் கண்டறியுங்கள்.',
-    ministryDeepDive: 'ஊழியங்கள்',
-    tailoredSpaces: 'ஒவ்வொரு வயதினருக்கும் ஏற்ற இடங்கள்.',
-    midweekLife: 'வாரநடுப்பகுதி தோழமை',
-    connectGroupsHeading: 'கோவை இணைப்பு குழுக்கள் (Connect Groups)',
-    connectGroupsLead: 'இணைப்பு குழுக்கள் கோவை வீடுகளில் கூடி வேதத்தைப் படிக்கவும், ஜெபிக்கவும் கூடுகின்றன.',
-    joinThisGroup: 'இந்தக் குழுவில் இணையுங்கள்',
-
-    // Events Page
-    saveDateEyebrow: 'நிகழ்வுகள்',
-    eventsTitle: 'ஒன்றாக வாழ்வது சிறப்பு.',
-    eventsLead: 'சிட்டி ஹார்வெஸ்ட் கோவையில் சிறப்பு நிகழ்வுகள் மற்றும் கூடுகைகள்.',
-    upcomingSpecialEvent: 'வரவிருக்கும் சிறப்பு நிகழ்வு',
-    markCalendar: 'உங்கள் நாட்காட்டியில் குறித்துக் கொள்ளுங்கள்',
-    savedCalendar: 'நாட்காட்டியில் சேமிக்கப்பட்டது',
-    register: 'பதிவு செய்யுங்கள்',
-
-    // Sermons Page
-    watchListenEyebrow: 'காணொளி & ஒலிவடிவம்',
-    sermonsTitle: 'உங்கள் பயணத்திற்கான செய்திகள்.',
-    sermonsLead: 'வேதப்பூர்வமான போதனைகள், ஞாயிறு ஆராதனை பதிவுகள் மற்றும் செய்திகளை ஆராயுங்கள்.',
-    featuredMessage: 'சிறப்புச் செய்தி',
-    teachingSeries: 'போதனைத் தொடர்',
-    watchSeriesYouTube: 'YouTube-இல் முழுத் தொடரையும் காண்க',
-    latestUploads: 'சிட்டி ஹார்வெஸ்ட் ஆன்லைனிலிருந்து',
-    audioMessages: 'ஒலிவடிவ செய்திகள்',
-    listenOnGo: 'பயணத்தின்போது கேளுங்கள்.',
-    listenAudioDesc: 'Spotify மற்றும் பிற தளங்களில் எங்கள் ஞாயிறு செய்திகளைக் கேளுங்கள்.',
 
     // Give Page
     generosityEyebrow: 'தாக்கம் உருவாக்குங்கள்',
