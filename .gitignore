@@ -1,3 +1,6 @@
 node_modules
 client/dist
+client/.netlify
 server/.env
+.DS_Store
+*.log
