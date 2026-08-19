@@ -55,14 +55,7 @@ export default function Home() {
         </div>
 
         <div className="shell hero-content">
-          <div className="hero-faith-tag">
-            <svg width="16" height="22" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 0H14V10H24V14H14V32H10V14H0V10H10V0Z" fill="#f0c974" />
-            </svg>
-            <span>JESUS CHRIST IS LORD · COIMBATORE</span>
-          </div>
-
-          <p className="eyebrow light-eyebrow" style={{ marginTop: '12px' }}>{t('welcomeHome')}</p>
+          <p className="eyebrow light-eyebrow">{t('welcomeHome')}</p>
 
           <h1>
             {t('heroTitleLine1')}
@@ -117,24 +110,6 @@ export default function Home() {
               style={{ backgroundImage: `url(${serviceGallery[0].src})` }}
             >
               <div className="media-overlay-gradient" />
-            </div>
-
-            {/* Floating Badge 1 */}
-            <div className="glass-badge badge-top-right">
-              <Clock size={20} color="#e9bc5f" />
-              <div>
-                <strong>8:30 AM & 10:30 AM</strong>
-                <span>Two Sunday Services</span>
-              </div>
-            </div>
-
-            {/* Floating Badge 2 */}
-            <div className="glass-badge badge-bottom-left">
-              <Users size={20} color="#e9bc5f" />
-              <div>
-                <strong>100% Welcome</strong>
-                <span>Come as you are</span>
-              </div>
             </div>
           </div>
 
@@ -260,17 +235,17 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="cww-projects-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+        <div className="cww-projects-grid">
           {churchWithoutWallsProjects.map((project) => (
-            <article key={project.title} className="cww-card" style={{ background: '#ffffff', borderRadius: '12px', overflow: 'hidden', border: '1px solid #e5dccf', boxShadow: '0 8px 24px rgba(24, 48, 43, 0.06)' }}>
-              <div className="cww-image" style={{ height: '190px', backgroundImage: `url(${project.image})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
-                <span className="tag" style={{ position: 'absolute', top: '12px', left: '12px', background: '#18302b', color: '#e9bc5f', padding: '4px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: 700 }}>
+            <article key={project.title} className="cww-card">
+              <div className="cww-image" style={{ backgroundImage: `url(${project.image})` }}>
+                <span className="tag">
                   {project.category}
                 </span>
               </div>
-              <div style={{ padding: '24px' }}>
-                <h3 style={{ font: '24px "DM Serif Display"', margin: '0 0 10px' }}>{project.title}</h3>
-                <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.6, margin: '0 0 16px' }}>{project.description}</p>
+              <div className="cww-card-body">
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
                 <Link className="text-link" to="/ministries">
                   {t('learnOutreach')} <ArrowRight size={15} />
                 </Link>
@@ -318,13 +293,13 @@ export default function Home() {
             {t('sotAside')}
           </p>
         </div>
-        <div className="discipleship-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+        <div className="discipleship-grid">
           {discipleshipClasses.map((item) => (
-            <div key={item.code} style={{ background: '#f8f5ef', padding: '28px', borderRadius: '12px', border: '1px solid #e5dccf' }}>
-              <span style={{ fontSize: '12px', fontWeight: 700, color: '#a87119', letterSpacing: '1px', display: 'block', marginBottom: '6px' }}>{item.code} · {item.duration}</span>
-              <h3 style={{ font: '24px "DM Serif Display"', margin: '0 0 10px', color: 'var(--ink)' }}>{item.title}</h3>
-              <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.6, margin: '0 0 16px' }}>{item.description}</p>
-              <span className="tag" style={{ background: '#ffffff', border: '1px solid #d1c9bb', padding: '4px 10px', borderRadius: '4px' }}>Format: {item.format}</span>
+            <div key={item.code} className="discipleship-card">
+              <span className="class-meta">{item.code} · {item.duration}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+              <span className="tag">Format: {item.format}</span>
             </div>
           ))}
         </div>

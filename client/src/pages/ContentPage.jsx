@@ -184,17 +184,15 @@ function RenderPageSections({ type }) {
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px' }}>
-              <div style={{ background: '#ffffff', padding: '36px', borderRadius: '12px', border: '1px solid var(--gold-card-border)', boxShadow: 'var(--shadow-card)' }}>
-                <span style={{ display: 'inline-flex', padding: '10px', background: '#fdf6e7', borderRadius: '8px', color: '#b8860b', marginBottom: '16px' }}><Sparkles size={24} /></span>
-                <h3 style={{ font: '28px "DM Serif Display"', margin: '0 0 12px', color: 'var(--ink)' }}>{t('visionTitle')}</h3>
-                <p style={{ color: 'var(--muted)', lineHeight: 1.7, fontSize: '16px', margin: 0 }}>{t('visionDesc')}</p>
+            <div className="vision-mission-grid">
+              <div className="vision-card">
+                <h3>{t('visionTitle')}</h3>
+                <p>{t('visionDesc')}</p>
               </div>
 
-              <div style={{ background: '#ffffff', padding: '36px', borderRadius: '12px', border: '1px solid var(--gold-card-border)', boxShadow: 'var(--shadow-card)' }}>
-                <span style={{ display: 'inline-flex', padding: '10px', background: '#fdf6e7', borderRadius: '8px', color: '#b8860b', marginBottom: '16px' }}><Heart size={24} /></span>
-                <h3 style={{ font: '28px "DM Serif Display"', margin: '0 0 12px', color: 'var(--ink)' }}>{t('missionTitle')}</h3>
-                <p style={{ color: 'var(--muted)', lineHeight: 1.7, fontSize: '16px', margin: 0 }}>{t('missionDesc')}</p>
+              <div className="mission-card">
+                <h3>{t('missionTitle')}</h3>
+                <p>{t('missionDesc')}</p>
               </div>
             </div>
           </div>
@@ -286,48 +284,31 @@ function RenderPageSections({ type }) {
             </p>
           </div>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '36px' }}>
+          <div className="filter-pill-bar">
             {ministryCategories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedMinistryCat(cat)}
-                style={{
-                  padding: '10px 18px',
-                  borderRadius: '24px',
-                  border: selectedMinistryCat === cat ? '1px solid #b8860b' : '1px solid #d1c9bb',
-                  background: selectedMinistryCat === cat ? '#18302b' : '#ffffff',
-                  color: selectedMinistryCat === cat ? '#e9bc5f' : 'var(--ink)',
-                  fontWeight: 700,
-                  fontSize: '13px',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
+                className={`filter-pill ${selectedMinistryCat === cat ? 'active' : ''}`}
               >
-                {cat === 'Bible Study' && '📖 '}
-                {cat === 'Church Without Walls' && '🧱 '}
-                {cat === 'Healthcare' && '🩺 '}
-                {cat === 'Education' && '🎓 '}
-                {cat === 'Community Services' && '🤝 '}
                 {cat}
               </button>
             ))}
           </div>
 
-          {/* Render filtered categories */}
           {(selectedMinistryCat === 'All' || selectedMinistryCat === 'Bible Study') && (
-            <div style={{ marginBottom: '48px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-                <span style={{ fontSize: '20px' }}>📖</span>
-                <h3 style={{ font: '28px "DM Serif Display"', margin: 0 }}>{t('bibleStudyTitle')}</h3>
+            <div className="ministry-block">
+              <div className="ministry-block-header">
+                <h3>{t('bibleStudyTitle')}</h3>
               </div>
-              <p style={{ color: 'var(--muted)', fontSize: '15px', marginBottom: '24px' }}>{t('bibleStudyDesc')}</p>
-              <div className="discipleship-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+              <p className="ministry-block-desc">{t('bibleStudyDesc')}</p>
+              <div className="discipleship-grid">
                 {discipleshipClasses.map((item) => (
-                  <div key={item.code} style={{ background: '#ffffff', padding: '28px', borderRadius: '12px', border: '1px solid var(--gold-card-border)', boxShadow: 'var(--shadow-card)' }}>
-                    <span style={{ fontSize: '12px', fontWeight: 700, color: '#b8860b', letterSpacing: '1px', display: 'block', marginBottom: '6px' }}>{item.code} · {item.duration}</span>
-                    <h4 style={{ font: '22px "DM Serif Display"', margin: '0 0 10px', color: 'var(--ink)' }}>{item.title}</h4>
-                    <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.6, margin: '0 0 16px' }}>{item.description}</p>
-                    <span className="tag" style={{ background: '#fdf6e7', border: '1px solid #e0d5c3', color: '#b8860b', padding: '4px 10px', borderRadius: '4px', fontSize: '12px', fontWeight: 700 }}>Format: {item.format}</span>
+                  <div key={item.code} className="discipleship-card">
+                    <span className="class-meta">{item.code} · {item.duration}</span>
+                    <h4>{item.title}</h4>
+                    <p>{item.description}</p>
+                    <span className="tag">Format: {item.format}</span>
                   </div>
                 ))}
               </div>
@@ -335,12 +316,11 @@ function RenderPageSections({ type }) {
           )}
 
           {(selectedMinistryCat === 'All' || selectedMinistryCat === 'Church Without Walls' || selectedMinistryCat === 'Healthcare' || selectedMinistryCat === 'Education' || selectedMinistryCat === 'Community Services') && (
-            <div style={{ marginBottom: '48px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-                <span style={{ fontSize: '20px' }}>🧱</span>
-                <h3 style={{ font: '28px "DM Serif Display"', margin: 0 }}>{t('cwwTitle')} &amp; Outreach Projects</h3>
+            <div className="ministry-block">
+              <div className="ministry-block-header">
+                <h3>{t('cwwTitle')} &amp; Outreach Projects</h3>
               </div>
-              <div className="cww-projects-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }}>
+              <div className="cww-projects-grid">
                 {churchWithoutWallsProjects
                   .filter((p) => {
                     if (selectedMinistryCat === 'All' || selectedMinistryCat === 'Church Without Walls') return true
@@ -350,15 +330,15 @@ function RenderPageSections({ type }) {
                     return false
                   })
                   .map((project) => (
-                    <article key={project.title} className="cww-card" style={{ background: '#ffffff', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--gold-card-border)', boxShadow: 'var(--shadow-card)' }}>
-                      <div className="cww-image" style={{ height: '190px', backgroundImage: `url(${project.image})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
-                        <span className="tag" style={{ position: 'absolute', top: '12px', left: '12px', background: '#18302b', color: '#e9bc5f', padding: '4px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: 700 }}>
+                    <article key={project.title} className="cww-card">
+                      <div className="cww-image" style={{ backgroundImage: `url(${project.image})` }}>
+                        <span className="tag">
                           {project.category}
                         </span>
                       </div>
-                      <div style={{ padding: '24px' }}>
-                        <h4 style={{ font: '22px "DM Serif Display"', margin: '0 0 10px' }}>{project.title}</h4>
-                        <p style={{ color: 'var(--muted)', fontSize: '14px', lineHeight: 1.6, margin: '0 0 16px' }}>{project.description}</p>
+                      <div className="cww-card-body">
+                        <h4>{project.title}</h4>
+                        <p>{project.description}</p>
                         <Link className="text-link" to="/contact">
                           Get involved <ArrowRight size={15} />
                         </Link>
