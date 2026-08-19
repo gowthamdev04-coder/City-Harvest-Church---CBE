@@ -40,7 +40,7 @@ export default function Layout() {
             {t('tickerText')}
           </span>
           
-          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '16px' }}>
+          <div className="announcement-actions">
             <a 
               href="https://www.youtube.com/@CityHarvest.online" 
               target="_blank" 
@@ -50,7 +50,6 @@ export default function Layout() {
               {t('watchOnline')} <PlayCircle size={13} />
             </a>
 
-            {/* Language Switcher in Ticker */}
             <div className="lang-switcher-ticker">
               <Globe size={13} />
               <button 

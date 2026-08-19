@@ -2447,3 +2447,167 @@ h2 em {
     font-size: 13px;
   }
 }
+
+/* Clean UI Components & Card System */
+.announcement-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.cww-card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--gold-card-border);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cww-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(12, 33, 27, 0.12);
+}
+
+.cww-image {
+  height: 190px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.cww-card-body {
+  padding: 24px;
+}
+
+.cww-card-body h3,
+.cww-card-body h4 {
+  font: 22px "DM Serif Display", serif;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+
+.cww-card-body p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.discipleship-card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 12px;
+  border: 1px solid var(--gold-card-border);
+  box-shadow: var(--shadow-card);
+}
+
+.discipleship-card .class-meta {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-deep);
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.discipleship-card h3,
+.discipleship-card h4 {
+  font: 22px "DM Serif Display", serif;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+
+.discipleship-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.vision-mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.vision-card,
+.mission-card {
+  background: #ffffff;
+  padding: 36px;
+  border-radius: 12px;
+  border: 1px solid var(--gold-card-border);
+  box-shadow: var(--shadow-card);
+}
+
+.vision-card h3,
+.mission-card h3 {
+  font: 28px "DM Serif Display", serif;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+
+.vision-card p,
+.mission-card p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 16px;
+  margin: 0;
+}
+
+.filter-pill-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.filter-pill {
+  padding: 10px 18px;
+  border-radius: 24px;
+  border: 1px solid #d1c9bb;
+  background: #ffffff;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-pill.active,
+.filter-pill:hover {
+  border-color: var(--gold-deep);
+  background: var(--ink);
+  color: var(--gold);
+}
+
+.ministry-block {
+  margin-bottom: 48px;
+}
+
+.ministry-block-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.ministry-block-header h3 {
+  font: 28px "DM Serif Display", serif;
+  margin: 0;
+  color: var(--ink);
+}
+
+.ministry-block-desc {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .vision-mission-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
